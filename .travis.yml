@@ -1,0 +1,14 @@
+sudo: required
+
+services:
+  - docker
+
+before_script:
+  - docker build --tag="CryptoSuite/base"  .
+
+script:
+  - >
+    docker run
+    --name CryptoSuite
+    -d -t CryptoSuite/base
+  - docker exec -it CryptoSuite echo "The base image was successfully build!"
