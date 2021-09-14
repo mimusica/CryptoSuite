@@ -4,11 +4,11 @@ services:
   - docker
 
 before_script:
-  - docker build --tag="CryptoSuite/base"  .
+  - docker build --tag="cryptosuite/base"  .
 
 script:
   - >
     docker run
-    --name CryptoSuite
-    -d -t CryptoSuite/base
-  - docker exec -it CryptoSuite echo "The base image was successfully build!"
+    --name cryptosuite
+    -d -t cryptosuite/base
+  - docker exec -it cryptosuite echo "The base image was successfully build!"
