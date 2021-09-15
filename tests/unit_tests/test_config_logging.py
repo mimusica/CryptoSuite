@@ -2,10 +2,11 @@
 Unittesting the logging configuration of our CryptoSuite
 """
 import logging
-import unittest
 import sys
-import config.logger as logger
+import unittest
 from datetime import datetime
+
+import config.logger as logger
 
 
 class LoggerTestCase(unittest.TestCase):
