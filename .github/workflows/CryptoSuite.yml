@@ -38,7 +38,7 @@ jobs:
         black .
     - name: apply isort
       run: |
-        isort --recursive --check-only .
+        isort --check-only --diff .
 #   Unittests
     - name: run unittests with pytest
       run: |
