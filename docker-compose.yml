@@ -1,0 +1,12 @@
+version: "3.3"
+
+services:
+  cryptosuite:
+      build:
+        context: .
+      container_name: cryptosuite
+      volumes:
+        - ./log:/opt/CryptoSuite/log
+      deploy:
+        restart_policy:
+          condition: on-failure
