@@ -6,7 +6,6 @@ import sys
 from datetime import datetime
 from logging.handlers import TimedRotatingFileHandler
 
-
 FORMATTER = logging.Formatter(
     "%(asctime)s [%(name)s][%(levelname)s] %(message)s"
 )
@@ -44,11 +43,11 @@ def setup_logger(logger_name):
     :param logger_name: name of your logger
     :return: logger
     """
-    logger = logging.getLogger(logger_name)
-    logger.setLevel(logging.DEBUG)
-    logger.addHandler(get_console_handler())
-    logger.addHandler(get_file_handler())
-    logger.propagate = False
+    log = logging.getLogger(logger_name)
+    log.setLevel(logging.DEBUG)
+    log.addHandler(get_console_handler())
+    log.addHandler(get_file_handler())
+    log.propagate = False
     return logger
 
 
