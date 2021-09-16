@@ -2,8 +2,8 @@
 The logging configuration of our CryptoSuite
 """
 import logging
-import sys
 import os
+import sys
 from datetime import datetime
 from logging.handlers import TimedRotatingFileHandler
 
