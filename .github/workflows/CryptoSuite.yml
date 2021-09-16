@@ -28,7 +28,7 @@ jobs:
 #   Code beautification
     - name: Analysing the code with pylint
       run: |
-        pylint `find . -name "*.py" -not -path "./.venv/*" | xargs`
+        pylint `find . -name "*.py" -not -path "./.venv/*" | xargs` --exit-zero
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
@@ -38,7 +38,7 @@ jobs:
         black .
     - name: apply isort
       run: |
-        isort --recursive --check-only .
+        isort --check-only --diff .
 #   Unittests
     - name: run unittests with pytest
       run: |
