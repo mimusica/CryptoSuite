@@ -6,12 +6,13 @@ import sys
 import unittest
 from datetime import datetime
 
-from config.logger import Logger
+from cryptosuite.config.logger import Logger
 
 
 class LoggerTestCase(unittest.TestCase):
     def setUp(self):
         self.logger = Logger()
+
 
     def test_get_console_handler(self):
         formatter = logging.Formatter(
