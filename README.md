@@ -1,4 +1,6 @@
-[![Build Status](https://app.travis-ci.com/mimusica/CryptoSuite.svg?branch=main)](https://app.travis-ci.com/mimusica/CryptoSuite)
+[![Build Status](https://app.travis-ci.com/mimusica/CryptoSuite.svg?branch=main)](https://app.travis-ci.com/mimusica/CryptoSuite) Travis-CI<br>
+[![CryptoSuite](https://github.com/mimusica/CryptoSuite/actions/workflows/CryptoSuite.yml/badge.svg?branch=main&event=pull_request)](https://github.com/mimusica/CryptoSuite/actions/workflows/CryptoSuite.yml) main (PR)<br>
+[![CryptoSuite](https://github.com/mimusica/CryptoSuite/actions/workflows/CryptoSuite.yml/badge.svg?branch=staging&event=push)](https://github.com/mimusica/CryptoSuite/actions/workflows/CryptoSuite.yml) staging (push)
 
 # CryptoSuite
 
