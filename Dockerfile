@@ -1,5 +1,6 @@
 FROM ubuntu:20.04
 
+LABEL org.opencontainers.image.source=https://github.com/mimusica/CryptoSuite
 LABEL Maintainer=Christophe@Langenberg.be
 LABEL version=0.1
 LABEL Description="This a multistage dockerfile that contains all the needs to deploy our CryptoSuite."
