@@ -2,10 +2,10 @@ name: CryptoSuite
 
 on:
   push:
-    branches:
-      - main
-      - staging
+# Should run on every (new) branch push to our repository
+
   pull_request:
+# Targetting specific branches within our repository
     branches:
       - main
       - staging
@@ -20,14 +20,14 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.9
-    - name: Install dependencies
+    - name: Install all dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pylint flake8 pytest black isort
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        for r in requirements*.txt; do pip install -r $r; done
 #   Code beautification
     - name: Analysing the code with pylint
       run: |
+        # always exit with a 0 return code (or the pipeline will not continue)
         pylint `find . -name "*.py" -not -path "./.venv/*" | xargs` --exit-zero
     - name: Lint with flake8
       run: |
@@ -35,11 +35,11 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
     - name: applying black
       run: |
-        black .
-    - name: apply isort
+        black -v .
+    - name: applying isort
       run: |
         isort --check-only --diff .
 #   Unittests
-    - name: run unittests with pytest
+    - name: running unittests with pytest
       run: |
-        pytest
+        pytest -v -rsx
