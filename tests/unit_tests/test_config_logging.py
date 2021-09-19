@@ -10,9 +10,9 @@ from cryptosuite.config.logger import Logger
 
 
 class LoggerTestCase(unittest.TestCase):
-    def setUp(self):
-        self.logger = Logger()
 
+    def setUp(self):
+        pass
 
     def test_get_console_handler(self):
         formatter = logging.Formatter(
