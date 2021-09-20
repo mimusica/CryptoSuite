@@ -11,7 +11,6 @@
 - You get to benefit from our project on which we spend days and days developing, testing, debugging, supporting.
 - You would be helping to cover the maintenance cost of our project:
   - Sentry in the cloud (helps us to better and broader catch errors, stack traces and breadcrumbs) --> result: faster and better mapping of errors, results in faster and better support
-  - Travis-CI (helps us to test build code from Pull Requests, All stages need to pass before merging the new commits) --> result: less time needed to review community Pull Requests, results in me having more time to code and add new features.
   - Development of new features
   - resolving bugs
   - Administrative maintenance of our project
