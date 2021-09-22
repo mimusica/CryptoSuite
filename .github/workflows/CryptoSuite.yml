@@ -14,22 +14,27 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.9
+
     - name: Install all dependencies
       run: |
         python -m pip install --upgrade pip
         for r in requirements*.txt; do pip install -r $r; done
+
 #   Run linters
     - name: Analysing the code with pylint
       run: |
         # always exit with a 0 return code (or the pipeline will not continue)
         pylint `find . -name "*.py" -not -path "./.venv/*" | xargs` --exit-zero
+
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+
     - name: applying black
       run: |
         black -v .
+
     - name: applying isort
       run: |
         isort --check-only --diff .
@@ -38,12 +43,17 @@ jobs:
     needs: linters
 #   Setup our github virtual environment
     runs-on: ubuntu-latest
+    outputs:
+      version:
+      name: ${{ steps.version.outputs.version }}
+
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python 3.9
       uses: actions/setup-python@v2
       with:
         python-version: 3.9
+
     - name: Install all dependencies
       run: |
         python -m pip install --upgrade pip
@@ -53,6 +63,10 @@ jobs:
       run: |
         pytest -v -rsx
 
+    - name: Get cryptosuite version number
+      run: echo "::set-output name=version::$(python -m cryptosuite.py)"
+      id: version
+
   push:
     needs: [ linters, tests ]
     runs-on: ubuntu-latest
@@ -60,10 +74,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+
+      - name: Determine which tags to use
+        if: github.event.inputs.version != 'nightly'
+        run: |
+          echo "tag=$(./cryptosuite.py -v)" >> $GITHUB_ENV
+
       - name: Build and Push Docker Image
         uses: mr-smithers-excellent/docker-build-push@v4
         with:
           image: mimusica/cryptosuite
+          tag: ${{ env.tag }}
           registry: docker.io
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASSWORD }}
