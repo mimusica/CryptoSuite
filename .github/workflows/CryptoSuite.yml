@@ -18,7 +18,8 @@ jobs:
     - name: Install all dependencies
       run: |
         python -m pip install --upgrade pip
-        for r in requirements*.txt; do pip install -r $r; done
+        pip install -r requirements-dev.txt
+#        for r in requirements*.txt; do pip install -r $r; done
 
 #   Run linters
     - name: Analysing the code with pylint
@@ -43,9 +44,6 @@ jobs:
     needs: linters
 #   Setup our github virtual environment
     runs-on: ubuntu-latest
-    outputs:
-      version:
-      name: ${{ steps.version.outputs.version }}
 
     steps:
     - uses: actions/checkout@v2
@@ -57,15 +55,12 @@ jobs:
     - name: Install all dependencies
       run: |
         python -m pip install --upgrade pip
-        for r in requirements*.txt; do pip install -r $r; done
+        pip install -r requirements-dev.txt
+      #        for r in requirements*.txt; do pip install -r $r; done
 #   Run Unittests
     - name: running unittests with pytest
       run: |
         pytest -v -rsx
-
-    - name: Get cryptosuite version number
-      run: echo "::set-output name=version::$(python -m cryptosuite.py)"
-      id: version
 
   push:
     needs: [ linters, tests ]
@@ -75,8 +70,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Determine which tags to use
-        if: github.event.inputs.version != 'nightly'
+      - name: Get the CryptoSuite version number
         run: |
           echo "tag=$(./cryptosuite.py -v)" >> $GITHUB_ENV
 

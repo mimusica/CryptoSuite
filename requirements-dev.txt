@@ -1,7 +1,8 @@
+-r requirements.txt
+
 black==21.9b0
 flake8==3.9.2
 isort==5.9.3
 pylint==2.10.2
 pytest==6.2.5
 testfixtures==6.18.1
-
