@@ -23,7 +23,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
     && apt-get upgrade -y \
     && apt-get dist-upgrade -y \
     # installing the additional software packages that we will need
-    && apt-get install -y --no-install-recommends \
+    && apt-get install --no-install-recommends -y \
                 python3-pip \
                 ca-certificates \
                 file \
@@ -49,5 +49,4 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
     && pip3 install --upgrade pip \
     && pip3 install --no-cache-dir -r requirements.txt
 
-
-#CMD [ "python3", "cryptosuite.py" ]
+ENTRYPOINT [ "python3.9", "entry.py" ]

@@ -7,6 +7,4 @@ services:
       container_name: cryptosuite
       volumes:
         - ./log:/opt/CryptoSuite/log
-      deploy:
-        restart_policy:
-          condition: on-failure
+
