@@ -6,7 +6,7 @@ import sys
 import unittest
 from datetime import datetime
 
-from cryptosuite.config.logger import Logger
+# from cryptosuite.config.logger import Logger
 
 
 class LoggerTestCase(unittest.TestCase):
