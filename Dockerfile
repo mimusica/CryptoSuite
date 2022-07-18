@@ -49,4 +49,6 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
     && pip3 install --upgrade pip \
     && pip3 install --no-cache-dir -r requirements.txt
 
+USER 65534
+
 ENTRYPOINT [ "python3.9", "entry.py" ]
