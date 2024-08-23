@@ -1,5 +1,5 @@
 argparse==1.4.0
 DateTime==4.3
-ccxt==1.56.97
+ccxt==4.3.87
 structlog==21.1.0
 click==8.0.1
